@@ -18,8 +18,7 @@ Also, read how it was done in [our blog](https://yalantis.com/blog/)
 
 ##Usage
 
-1. Wrap your fragment or activity main view in TilesFrameLayout:
-
+Wrap your fragment or activity main view in TilesFrameLayout:
 ```
 <com.yalantis.starwars.TilesFrameLayout
   android:id="@+id/tiles_frame_layout"
@@ -34,8 +33,7 @@ Also, read how it was done in [our blog](https://yalantis.com/blog/)
 ```
 
 
-2. Adjust animation with these parameters:
-
+Adjust animation with these parameters:
 ```app:sw_animationDuration``` – duration in milliseconds
 ```app:sw_numberOfTilesX``` –  the number of square tiles the plane is tessellated into broadwise
 
@@ -43,10 +41,7 @@ Also, read how it was done in [our blog](https://yalantis.com/blog/)
 mTilesFrameLayout = (TilesFrameLayout) findViewById(R.id.tiles_frame);
 mTilesFrameLayout.setOnAnimationFinishedListener(this);
 ```
-
-
-
-3. In your activity or fragment’s onPause() and onResume() it’s important to call the corresponding methods:
+In your activity or fragment’s onPause() and onResume() it’s important to call the corresponding methods:
 ```
 @Override
 public void onResume() {
@@ -60,15 +55,11 @@ public void onPause() {
     mTilesFrameLayout.onPause();
 }
 ```
-
-4. To start the animation simply call:
-
+To start the animation simply call:
 ```
 mTilesFrameLayout.startAnimation();
 ```
-
-5. Your callback will be called when the animation ends:
-
+Your callback will be called when the animation ends:
 ```
 @Override
 public void onAnimationFinished() {
