@@ -18,6 +18,14 @@ Also, read how it was done in [our blog](https://yalantis.com/blog/star-wars-the
 
 ##Usage
 
+Add to your module's build.gradle:
+```Groovy
+dependencies {
+    //...
+    compile 'com.yalantis:starwarstiles:0.1.0'
+}
+```
+
 Wrap your fragment or activity main view in TilesFrameLayout:
 ```xml
 <com.yalantis.starwars.TilesFrameLayout
