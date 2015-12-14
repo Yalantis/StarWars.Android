@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="yellow">#ffc2b65d</color>
+    <color name="yellow_semi">#80c2b65d</color>
+    <color name="whitish">#f8f8f8</color>
+    <color name="darkish">#141217</color>
+    <color name="darker">#090710</color>
+    <color name="semitransparent">#80000000</color>
+
+    <color name="toolbarBright">#acacac</color>
+    <color name="toolbarDark">@color/darkish</color>
+    <color name="gray">#504F51</color>
+    <color name="light_grey">#cacaca</color>
+</resources>

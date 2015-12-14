@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<declare-styleable name="sw_StarWarsTilesFrameLayout">
+    <attr name="sw_animationDuration" format="integer" />
+    <attr name="sw_numberOfTilesX" format="integer" />
+</declare-styleable>
+</resources>

@@ -1,0 +1,80 @@
+<resources>
+    <style name="StarWarsAppTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">@android:color/black</item>
+    </style>
+
+    <style name="StarWarsAppThemeLight" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorSwitchThumbNormal">@android:color/holo_blue_light</item>
+        <item name="colorControlNormal">@android:color/holo_blue_light</item>
+        <item name="colorControlActivated">@android:color/holo_blue_light</item>
+        <item name="viewStyle">@style/viewStyleBrightSide</item>
+        <item name="toolbarBackground">@color/toolbarBright</item>
+        <item name="labelTextColor">@color/light_grey</item>
+        <item name="toolbarStyle">@style/ToolbarStyleLight</item>
+    </style>
+
+    <style name="StarWarsAppThemeDark" parent="Theme.AppCompat.NoActionBar">
+        <item name="colorSwitchThumbNormal">@android:color/holo_red_light</item>
+        <item name="colorControlNormal">@android:color/holo_red_light</item>
+        <item name="colorControlActivated">@android:color/holo_red_light</item>
+        <item name="viewStyle">@style/viewStyleDarkSide</item>
+        <item name="toolbarBackground">@color/toolbarDark</item>
+        <item name="labelTextColor">@color/gray</item>
+        <item name="toolbarStyle">@style/ToolbarStyleDark</item>
+    </style>
+
+    <style name="RecyclerView">
+        
+    </style>
+    
+    <declare-styleable name="viewStyle">
+        <attr name="viewStyle" format="reference"/>
+    </declare-styleable>
+
+    <declare-styleable name="toolbarBackground">
+        <attr name="toolbarBackground" format="reference"/>
+    </declare-styleable>
+
+    <declare-styleable name="toolbarStyle">
+        <attr name="toolbarStyle"/>
+    </declare-styleable>
+
+    <declare-styleable name="labelTextColor">
+        <attr name="labelTextColor" format="reference"/>
+    </declare-styleable>
+
+    <style name="viewStyleDarkSide">
+        <item name="android:background">@color/darkish</item>
+    </style>
+
+    <style name="viewStyleBrightSide">
+        <item name="android:background">@color/whitish</item>
+    </style>
+
+    <!--<style name="ToolbarBackgroundBright">-->
+        <!--<item name="android:background">@color/toolbarBright</item>-->
+    <!--</style>-->
+
+    <!--<style name="ToolbarBackgroundDark">-->
+        <!--<item name="android:background">@color/toolbarDark</item>-->
+    <!--</style>-->
+
+    <style name="TransparentTextAppearance" parent="TextAppearance.AppCompat.Title">
+        <item name="android:textColor">#00000000</item>
+    </style>
+
+    <style name="Label">
+        <item name="android:textAllCaps">true</item>
+        <item name="android:padding">@dimen/text_view_padding</item>
+        <item name="android:textColor">?attr/labelTextColor</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="ToolbarStyleLight" parent="Widget.AppCompat.Toolbar">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="ToolbarStyleDark" parent="Widget.AppCompat.Toolbar">
+        <item name="android:textColor">@color/gray</item>
+    </style>
+</resources>

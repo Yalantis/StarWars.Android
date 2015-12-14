@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Star Wars</string>
+    <string name="title_activity_star_wars">StarWarsActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="btn_setup_profile">Setup your profile</string>
+    <string name="greetings_padawan">greetings,\nmy young padawan</string>
+    <string name="settings">Settings</string>
+    <string name="action_close">Close</string>
+    <string name="dark_side_label">Dark side</string>
+    <string name="light_side_label">Light side</string>
+    <string name="female">Female</string>
+    <string name="male">Male</string>
+
+    <string name="label_full_name" type="id">Full Name</string>
+    <string name="label_homeworld" type="id">Homeworld</string>
+    <string name="label_birthday" type="id">Birthday</string>
+    <string name="label_gender" type="id">Gender</string>
+</resources>

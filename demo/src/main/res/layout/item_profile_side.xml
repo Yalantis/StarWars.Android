@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              xmlns:android="http://schemas.android.com/apk/res/android"
+              >
+
+    <TextView
+        style="@style/Label"
+        android:id="@+id/tv_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+
+    <com.yalantis.starwarsdemo.widget.BackgroundDrawableSwitchCompat
+        android:id="@+id/side_switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        />
+
+</FrameLayout>
