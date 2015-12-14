@@ -19,7 +19,7 @@ Also, read how it was done in [our blog](https://yalantis.com/blog/star-wars-the
 ##Usage
 
 Wrap your fragment or activity main view in TilesFrameLayout:
-```
+```xml
 <com.yalantis.starwars.TilesFrameLayout
   android:id="@+id/tiles_frame_layout"
   android:layout_height="match_parent"
@@ -34,15 +34,15 @@ Wrap your fragment or activity main view in TilesFrameLayout:
 
 
 Adjust animation with these parameters:
-```app:sw_animationDuration``` – duration in milliseconds
-```app:sw_numberOfTilesX``` –  the number of square tiles the plane is tessellated into broadwise
+- ```app:sw_animationDuration``` – duration in milliseconds
+- ```app:sw_numberOfTilesX``` –  the number of square tiles the plane is tessellated into broadwise
 
-```
+```java
 mTilesFrameLayout = (TilesFrameLayout) findViewById(R.id.tiles_frame);
 mTilesFrameLayout.setOnAnimationFinishedListener(this);
 ```
 In your activity or fragment’s onPause() and onResume() it’s important to call the corresponding methods:
-```
+```java
 @Override
 public void onResume() {
     super.onResume();
@@ -56,11 +56,11 @@ public void onPause() {
 }
 ```
 To start the animation simply call:
-```
+```java
 mTilesFrameLayout.startAnimation();
 ```
 Your callback will be called when the animation ends:
-```
+```java
 @Override
 public void onAnimationFinished() {
    // Hide or remove your view/fragment/activity here
