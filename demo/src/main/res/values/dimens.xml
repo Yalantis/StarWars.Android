@@ -3,7 +3,8 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
-    <dimen name="appbar_height">256dp</dimen>
+    <dimen name="appbar_height">200dp</dimen>
     <dimen name="photo_toolbar_height">256dp</dimen>
     <dimen name="text_view_padding">8dp</dimen>
+    <dimen name="save_btn_height">48dp</dimen>
 </resources>

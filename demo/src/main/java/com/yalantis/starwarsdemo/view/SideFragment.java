@@ -35,6 +35,7 @@ import com.yalantis.starwarsdemo.widget.ClipRevealFrame;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by Artem Kholodnyi on 11/19/15.
@@ -277,4 +278,8 @@ public abstract class SideFragment extends Fragment implements ProfileAdapterLis
 
     public abstract String getTagString();
 
+    @OnClick(R.id.btn_save)
+    void onClick() {
+        doBreak();
+    }
 }

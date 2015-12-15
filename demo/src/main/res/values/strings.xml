@@ -15,4 +15,5 @@
     <string name="label_homeworld" type="id">Homeworld</string>
     <string name="label_birthday" type="id">Birthday</string>
     <string name="label_gender" type="id">Gender</string>
+    <string name="save">Save</string>
 </resources>
