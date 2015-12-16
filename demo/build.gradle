@@ -36,14 +36,6 @@ android {
     dataBinding {
         enabled = false
     }
-    productFlavors {
-        normal {
-            buildConfigField "boolean", "DEBUG_GFX", 'false'
-        }
-        gfxDebug {
-            buildConfigField "boolean", "DEBUG_GFX", 'true'
-        }
-    }
 }
 
 dependencies {
