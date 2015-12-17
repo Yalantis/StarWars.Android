@@ -1,6 +1,6 @@
 # StarWars.Android
 
-[![GitHub license](https://img.shields.io/github/license/Yalantis/StarWars.Android.svg)]()
+[![License](http://img.shields.io/badge/license-MIT-green.svg?style=flat)]()
 [![Maven](https://img.shields.io/maven-central/v/com.yalantis/starwarstiles.svg)]()
 [![Yalantis](https://raw.githubusercontent.com/Yalantis/PullToRefresh/develop/PullToRefreshDemo/Resources/badge_dark.png)](https://yalantis.com/?utm_source=github)
 
@@ -88,7 +88,7 @@ P.S. We’re going to publish more awesomeness wrapped in code and a tutorial on
 
 	The MIT License (MIT)
 
-	Copyright © 2015 Yalantis
+	Copyright © 2015 Yalantis, https://yalantis.com
 
 	Permission is hereby granted, free of charge, to any person obtaining a copy
 	of this software and associated documentation files (the "Software"), to deal
