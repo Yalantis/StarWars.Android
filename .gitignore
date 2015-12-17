@@ -8,3 +8,7 @@
 /captures
 /logs
 /.idea
+demo/demo.iml
+.gradle/
+StarWars.Android.iml
+library/library.iml
