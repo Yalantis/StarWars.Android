@@ -8,7 +8,7 @@ This component implements transition animation to crumble view into tiny pieces.
 
 
 
-<img src="https://yalantis.com/media/content/ckeditor/2015/10/20/star_wars-shot.gif" />
+<img src="star_wars-concept.gif" />
 <br>Check this <a href="https://dribbble.com/shots/2109991-Star-Wars-App-concept">project on dribbble</a>.
 
 Also, read how it was done in [our blog](https://yalantis.com/blog/star-wars-the-force-awakens-or-how-to-crumble-view-into-tiny-pieces-on-android)
