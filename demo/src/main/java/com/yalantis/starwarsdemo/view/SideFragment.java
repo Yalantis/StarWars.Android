@@ -75,7 +75,7 @@ public abstract class SideFragment extends Fragment implements ProfileAdapterLis
     @Override
     public void onResume() {
         super.onResume();
-        mTilesFrameLayout.onResume();
+//        mTilesFrameLayout.onResume();
     }
 
     @Override
