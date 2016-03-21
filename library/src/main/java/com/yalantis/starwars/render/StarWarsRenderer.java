@@ -287,6 +287,7 @@ public class StarWarsRenderer implements GLSurfaceView.Renderer {
         mGlSurfaceView.queueEvent(new Runnable() {
             @Override
             public void run() {
+                requestedReveal = false;
                 mAndroidDataHandle = TextureHelper.loadTexture(bitmap);
                 mGlSurfaceView.requestRender();
             }
