@@ -23,7 +23,7 @@ Add to your module's build.gradle:
 ```Groovy
 dependencies {
     //...
-    compile 'com.yalantis:starwarstiles:x.y.z'
+    compile 'com.yalantis:starwarstiles:0.1.1'
 }
 ```
 
