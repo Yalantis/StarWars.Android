@@ -2,6 +2,7 @@
 
 [![License](http://img.shields.io/badge/license-MIT-green.svg?style=flat)]()
 [![Maven](https://img.shields.io/maven-central/v/com.yalantis/starwarstiles.svg)]()
+[![](https://jitpack.io/v/yalantis/starwars.android.svg)](https://jitpack.io/#yalantis/starwars.android)
 [![Yalantis](https://raw.githubusercontent.com/Yalantis/PullToRefresh/develop/PullToRefreshDemo/Resources/badge_dark.png)](https://yalantis.com/?utm_source=github)
 
 This component implements transition animation to crumble view into tiny pieces.
