@@ -4,15 +4,17 @@ import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
+import android.graphics.PixelFormat;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LevelListDrawable;
-import android.support.annotation.IntRange;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.SwitchCompat;
 import android.util.AttributeSet;
 import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
+
+import androidx.annotation.IntRange;
+import androidx.appcompat.widget.SwitchCompat;
+import androidx.core.content.ContextCompat;
 
 import com.yalantis.starwarsdemo.R;
 
@@ -66,6 +68,28 @@ public class BackgroundDrawableSwitchCompat extends SwitchCompat {
         mTwoStatesDrawable.setBlend(checked ? OPAQUE : TRANSPARENT);
     }
 
+    private void startAnimation(boolean firstToSecond) {
+        if (animator != null) {
+            animator.cancel();
+        }
+        animator = ValueAnimator.ofInt(firstToSecond ? OPAQUE : TRANSPARENT, firstToSecond ? TRANSPARENT : OPAQUE);
+        animator.setDuration(THUMB_ANIMATION_DURATION);
+        animator.setInterpolator(new LinearInterpolator());
+//        animator.setRepeatMode(ValueAnimator.RESTART);
+//        animator.setRepeatCount(ValueAnimator.INFINITE);
+
+        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                mFirstDrawableAlpha = (int) animation.getAnimatedValue();
+                mSecondDrawableAlpha = OPAQUE - (int) animation.getAnimatedValue();
+                invalidate();
+            }
+        });
+
+        animator.start();
+    }
+
     private class TwoStatesTrackDrawable extends LevelListDrawable {
         private final Drawable mFirstDrawable;
         private final Drawable mSecondDrawable;
@@ -101,9 +125,10 @@ public class BackgroundDrawableSwitchCompat extends SwitchCompat {
 
         }
 
+
         @Override
         public int getOpacity() {
-            return 0;
+            return PixelFormat.UNKNOWN;
         }
 
         private void setBlend(@IntRange(from = TRANSPARENT, to = OPAQUE) int k) {
@@ -111,28 +136,6 @@ public class BackgroundDrawableSwitchCompat extends SwitchCompat {
             mSecondDrawableAlpha = k;
             invalidate();
         }
-    }
-
-    private void startAnimation(boolean firstToSecond) {
-        if (animator != null) {
-            animator.cancel();
-        }
-        animator = ValueAnimator.ofInt(firstToSecond ? OPAQUE : TRANSPARENT, firstToSecond ? TRANSPARENT : OPAQUE);
-        animator.setDuration(THUMB_ANIMATION_DURATION);
-        animator.setInterpolator(new LinearInterpolator());
-//        animator.setRepeatMode(ValueAnimator.RESTART);
-//        animator.setRepeatCount(ValueAnimator.INFINITE);
-
-        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
-                mFirstDrawableAlpha = (int) animation.getAnimatedValue();
-                mSecondDrawableAlpha = OPAQUE - (int) animation.getAnimatedValue();
-                invalidate();
-            }
-        });
-
-        animator.start();
     }
 
 }

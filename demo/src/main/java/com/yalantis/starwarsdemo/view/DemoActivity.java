@@ -6,10 +6,11 @@ import android.content.pm.ConfigurationInfo;
 import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.yalantis.starwarsdemo.R;
 import com.yalantis.starwarsdemo.interfaces.DemoActivityInterface;
@@ -19,17 +20,13 @@ import com.yalantis.starwarsdemo.particlesys.ParticleSystemRenderer;
 
 import java.util.List;
 
-import butterknife.Bind;
-import butterknife.ButterKnife;
 
 /**
  * Created by Artem Kholodnyi on 11/11/15.
  */
 public class DemoActivity extends AppCompatActivity implements GreetingFragmentInterface,
         DemoActivityInterface, TilesRendererInterface {
-    @Bind(R.id.gl_surface_view)
-    GLSurfaceView mGlSurfaceView;
-
+    private GLSurfaceView mGlSurfaceView;
     private SideFragment mDarkFragment;
     private SideFragment mBrightFragment;
     private GreetingsFragment mGreetingsFragment;
@@ -39,8 +36,7 @@ public class DemoActivity extends AppCompatActivity implements GreetingFragmentI
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_demo);
-        ButterKnife.bind(this);
-
+        mGlSurfaceView = findViewById(R.id.gl_surface_view);
         // Check if the system supports OpenGL ES 2.0.
         final ActivityManager activityManager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
         final ConfigurationInfo configurationInfo = activityManager.getDeviceConfigurationInfo();
@@ -61,7 +57,6 @@ public class DemoActivity extends AppCompatActivity implements GreetingFragmentI
         if (savedInstanceState == null) {
             showGreetings();
         }
-
     }
 
     @Override
