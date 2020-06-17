@@ -1,22 +1,19 @@
 package com.yalantis.starwarsdemo.adapter;
 
 import android.content.Context;
-import android.support.annotation.LayoutRes;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.TextView;
 
+import androidx.annotation.LayoutRes;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.yalantis.starwarsdemo.R;
 import com.yalantis.starwarsdemo.interfaces.ProfileAdapterListener;
 import com.yalantis.starwarsdemo.model.User;
 import com.yalantis.starwarsdemo.widget.BackgroundDrawableSwitchCompat;
-
-import butterknife.Bind;
-import butterknife.ButterKnife;
 
 /**
  * Created by Artem Kholodnyi on 11/17/15.
@@ -26,12 +23,11 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ViewHold
     private static final int VIEW_TYPE_TEXT_FIELD = 1;
     private static final int VIEW_GENDER_FIELD = 2;
     private final ProfileAdapterListener mListener;
-    private User mUser;
-
     private final String mFullNameLabel;
     private final String mHomeWorldLabel;
     private final String mBirthdayLabel;
     private final String mGenderLabel;
+    private User mUser;
 
     public ProfileAdapter(Context context, User user, ProfileAdapterListener listener) {
         mUser = user;
@@ -123,21 +119,15 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ViewHold
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        @Nullable
-        @Bind(R.id.side_switch)
         BackgroundDrawableSwitchCompat mySwitch;
-
-        @Nullable
-        @Bind(R.id.tv_label)
         TextView label;
-
-        @Nullable
-        @Bind(R.id.tv_value)
         TextView value;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            ButterKnife.bind(this, itemView);
+            mySwitch = itemView.findViewById(R.id.side_switch);
+            label = itemView.findViewById(R.id.tv_label);
+            value = itemView.findViewById(R.id.tv_value);
         }
     }
 }

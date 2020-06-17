@@ -1,60 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                               xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.percentlayout.widget.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-                                               android:layout_width="match_parent"
-                                               android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <android.support.v7.widget.Toolbar
+    <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="?android:attr/actionBarSize"
-        />
+        android:layout_height="?android:attr/actionBarSize" />
 
     <!--suppress AndroidDomInspection -->
     <ImageView
         android:id="@+id/logo"
-        app:layout_widthPercent="80%"
-        app:layout_heightPercent="40%"
-        android:src="@drawable/star_wars_logo"
         android:layout_centerHorizontal="true"
         android:scaleType="centerInside"
+        android:src="@drawable/star_wars_logo"
+        app:layout_heightPercent="40%"
+        app:layout_widthPercent="80%"
         tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@+id/greetings"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="32dp"
-        android:gravity="center"
-        android:lines="2"
-        android:textAllCaps="true"
-        android:text="@string/greetings_padawan"
         android:layout_below="@id/logo"
         android:layout_centerHorizontal="true"
-        android:textColor="@android:color/white"
-        android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-        android:textSize="22sp"
         android:fontFamily="sans-serif-thin"
-        />
+        android:gravity="center"
+        android:lines="2"
+        android:padding="32dp"
+        android:text="@string/greetings_padawan"
+        android:textAllCaps="true"
+        android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+        android:textColor="@android:color/white"
+        android:textSize="22sp" />
 
     <Button
-        android:layout_below="@id/greetings"
-        android:layout_margin="32dp"
+        android:id="@+id/btn_setup_profile"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:textColor="@android:color/white"
-        android:id="@+id/btn_setup_profile"
+        android:layout_below="@id/greetings"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="32dp"
         android:background="@drawable/button_setup_profile"
-        android:text="@string/btn_setup_profile"
+        android:fontFamily="sans-serif-thin"
         android:lines="1"
-        android:textAllCaps="false"
-        android:textSize="20sp"
         android:paddingLeft="40dp"
         android:paddingRight="40dp"
-        android:layout_centerHorizontal="true"
-        android:fontFamily="sans-serif-thin"
-        />
+        android:text="@string/btn_setup_profile"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white"
+        android:textSize="20sp" />
 
-</android.support.percent.PercentRelativeLayout>
+</androidx.percentlayout.widget.PercentRelativeLayout>

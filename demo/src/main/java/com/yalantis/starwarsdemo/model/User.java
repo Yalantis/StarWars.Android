@@ -1,7 +1,8 @@
 package com.yalantis.starwarsdemo.model;
 
-import android.support.annotation.DrawableRes;
-import android.support.annotation.StringRes;
+
+import androidx.annotation.DrawableRes;
+import androidx.annotation.StringRes;
 
 import com.yalantis.starwarsdemo.R;
 
@@ -21,7 +22,8 @@ public class User {
         mBirthday = birthday;
     }
 
-    public @DrawableRes int getPhotoRes() {
+    public @DrawableRes
+    int getPhotoRes() {
         return mDarkSide ? R.drawable.darth : R.drawable.anakin;
     }
 
@@ -41,7 +43,8 @@ public class User {
         return mBirthday;
     }
 
-    public @StringRes int getSideText() {
+    public @StringRes
+    int getSideText() {
         return isDarkSide() ? R.string.dark_side_label : R.string.light_side_label;
     }
 }

@@ -1,8 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.yalantis.starwars">
+    package="com.yalantis.starwars">
 
-    <uses-feature android:glEsVersion="0x00020000" android:required="true" />
-
-    <library android:name="@string/sw_lib_name"/>
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" />
 
 </manifest>
