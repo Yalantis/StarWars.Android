@@ -4,8 +4,6 @@ import android.graphics.Bitmap;
 import android.opengl.GLES20;
 import android.opengl.GLUtils;
 
-import timber.log.Timber;
-
 import static android.opengl.GLES20.GL_CLAMP_TO_EDGE;
 import static android.opengl.GLES20.GL_NEAREST;
 import static android.opengl.GLES20.GL_TEXTURE_2D;
@@ -43,7 +41,6 @@ public class TextureHelper {
 			int errorCode = GLES20.glGetError();
             String errorString = GLUtils.getEGLErrorString(errorCode);
             RuntimeException e = new RuntimeException(errorCode + " " + errorString);
-			Timber.e(e, "");
 			throw e;
 		}
 
