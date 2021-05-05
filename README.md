@@ -14,11 +14,11 @@ This component implements transition animation to crumble view into tiny pieces.
 
 Also, read how it was done in [our blog](https://yalantis.com/blog/star-wars-the-force-awakens-or-how-to-crumble-view-into-tiny-pieces-on-android)
 
-##Requirements
+## Requirements
 - Android SDK 15+
 - OpenGL ES 2.0+
 
-##Usage
+## Usage
 
 Add to your module's build.gradle:
 ```Groovy
@@ -77,7 +77,7 @@ public void onAnimationFinished() {
 }
 ```
 
-Have fun! :)
+Have fun! 😄
 
 #### Let us know!
 
