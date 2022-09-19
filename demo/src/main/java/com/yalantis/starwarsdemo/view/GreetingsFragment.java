@@ -3,17 +3,13 @@ package com.yalantis.starwarsdemo.view;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.yalantis.starwarsdemo.R;
+import com.yalantis.starwarsdemo.databinding.FragmentGreetingsBinding;
 import com.yalantis.starwarsdemo.interfaces.GreetingFragmentInterface;
-
-import butterknife.Bind;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 /**
  * Created by Artem Kholodnyi on 11/17/15.
@@ -21,9 +17,7 @@ import butterknife.OnClick;
 public class GreetingsFragment extends Fragment {
     public final static String TAG = GreetingsFragment.class.getCanonicalName();
 
-    @Bind(R.id.toolbar)
-    Toolbar mToolbar;
-
+    private FragmentGreetingsBinding binding;
     private GreetingFragmentInterface mListener;
 
     public static GreetingsFragment newInstance() {
@@ -39,26 +33,14 @@ public class GreetingsFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_greetings, container, false);
-        ButterKnife.bind(this, view);
-        return view;
+        binding = FragmentGreetingsBinding.inflate(getLayoutInflater(savedInstanceState), container, false);
+        return binding.getRoot();
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mToolbar.setNavigationIcon(R.drawable.ic_menu);
+        binding.toolbar.setNavigationIcon(R.drawable.ic_menu);
+        binding.btnSetupProfile.setOnClickListener(v -> mListener.onSetupProfileClick());
     }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        ButterKnife.unbind(this);
-    }
-
-    @OnClick(R.id.btn_setup_profile)
-    void onClick() {
-        mListener.onSetupProfileClick();
-    }
-
 }

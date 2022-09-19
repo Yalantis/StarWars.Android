@@ -1,4 +1,4 @@
-precision mediump float;
+precision highp float;        // Set the default precision to medium. We don't need as high of a precision in the fragment shader.
 
 uniform float u_Time;
 uniform vec2 u_Resolution;

@@ -1,29 +1,13 @@
-buildscript {
-    repositories {
-        maven { url 'https://maven.fabric.io/public' }
-    }
-
-    dependencies {
-        classpath 'io.fabric.tools:gradle:1.21.0'
-    }
-}
 apply plugin: 'com.android.application'
 
-repositories {
-    maven { url 'https://maven.fabric.io/public' }
-}
-
-apply plugin: 'io.fabric'
-
-
 android {
-    compileSdkVersion 23
-    buildToolsVersion '23.0.2'
+    compileSdkVersion 33
+    buildToolsVersion '30.0.3'
 
     defaultConfig {
         applicationId "com.yalantis.starwarsdemo"
         minSdkVersion 15
-        targetSdkVersion 23
+        targetSdkVersion 33
         versionCode 1
         versionName "0.1.0"
     }
@@ -33,22 +17,20 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    dataBinding {
-        enabled = false
+    buildFeatures {
+        viewBinding = true
     }
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.1.1'
-    compile 'com.android.support:design:23.1.1'
-    compile 'com.jakewharton.timber:timber:4.1.0'
-    compile 'com.jakewharton:butterknife:7.0.1'
-    compile 'com.android.support:recyclerview-v7:23.1.1'
-    compile 'com.android.support:percent:23.1.1'
-    compile project(':library')
-    compile('com.crashlytics.sdk.android:crashlytics:2.5.3@aar') {
-        transitive = true;
-    }
+    implementation project(':library')
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation 'com.android.support:appcompat-v7:23.1.1'
+    implementation 'com.android.support:design:23.1.1'
+    implementation 'com.android.support:recyclerview-v7:23.1.1'
+    implementation 'com.android.support:percent:23.1.1'
+
+    implementation "com.jakewharton.timber:timber:4.7.1"
+    testImplementation 'junit:junit:4.13.2'
 }
