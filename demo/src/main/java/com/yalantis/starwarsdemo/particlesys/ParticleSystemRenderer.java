@@ -34,22 +34,22 @@ public class ParticleSystemRenderer implements GLSurfaceView.Renderer {
     public int sizeX = 35;
     public int sizeY = 70;
     public float mTime;
-    private GLSurfaceView mGlSurfaceView;
+    private final GLSurfaceView mGlSurfaceView;
     /**
      * Store the model matrix. This matrix is used to move models from object space (where each model can be thought
      * of being located at the center of the universe) to world space.
      */
-    private float[] mModelMatrix = new float[16];
+    private final float[] mModelMatrix = new float[16];
     /**
      * Store the view matrix. This can be thought of as our camera. This matrix transforms world space to eye space;
      * it positions things relative to our eye.
      */
-    private float[] mViewMatrix = new float[16];
+    private final float[] mViewMatrix = new float[16];
     /** Store the projection matrix. This is used to project the scene onto a 2D viewport. */
-    private float[] mProjectionMatrix = new float[16];
+    private final float[] mProjectionMatrix = new float[16];
     /** Allocate storage for the final combined matrix. This will be passed into the shader program. */
-    private float[] mMVPMatrix = new float[16];
-    private float[] mTemporaryMatrix = new float[16];
+    private final float[] mMVPMatrix = new float[16];
+    private final float[] mTemporaryMatrix = new float[16];
     private int timeHandle;
     private long mStartTime;
     private int frames;
@@ -59,7 +59,7 @@ public class ParticleSystemRenderer implements GLSurfaceView.Renderer {
     private float dt;
     private long t_current;
     private long t_prev;
-    private float dt_prev = 1;
+    private final float dt_prev = 1;
     private ValueAnimator animator;
     private Bitmap mBitmap;
     private ParticleSystem mParticleSystem;
@@ -68,7 +68,7 @@ public class ParticleSystemRenderer implements GLSurfaceView.Renderer {
     private int mHeight;
     private int timesRepeated;
     private float delta;
-    private ExecutorService mExecutor = Executors.newSingleThreadExecutor();
+    private final ExecutorService mExecutor = Executors.newSingleThreadExecutor();
 
 
     public ParticleSystemRenderer(GLSurfaceView glSurfaceView) {

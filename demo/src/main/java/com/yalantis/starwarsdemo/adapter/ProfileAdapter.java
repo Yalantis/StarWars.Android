@@ -26,7 +26,7 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ViewHold
     private static final int VIEW_TYPE_TEXT_FIELD = 1;
     private static final int VIEW_GENDER_FIELD = 2;
     private final ProfileAdapterListener mListener;
-    private User mUser;
+    private final User mUser;
 
     private final String mFullNameLabel;
     private final String mHomeWorldLabel;
@@ -87,9 +87,8 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ViewHold
 //            holder.getBinding().setVariable(BR.callback, mListener);
 //            holder.getBinding().setVariable(BR.user, mUser);
                 holder.mySwitch.setCheckedImmediate(mUser.isDarkSide());
-                holder.mySwitch.setOnCheckedChangeListener((CompoundButton.OnCheckedChangeListener)
-                        (buttonView, isChecked) ->
-                                mListener.onSideSwitch(holder.mySwitch));
+                holder.mySwitch.setOnCheckedChangeListener((buttonView, isChecked) ->
+                        mListener.onSideSwitch(holder.mySwitch));
                 holder.label.setText(mUser.getSideText());
                 break;
             case 1:

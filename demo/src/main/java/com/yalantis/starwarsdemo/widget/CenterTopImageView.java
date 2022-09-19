@@ -3,13 +3,14 @@ package com.yalantis.starwarsdemo.widget;
 import android.content.Context;
 import android.graphics.Matrix;
 import android.util.AttributeSet;
-import android.widget.ImageView;
+
+import androidx.appcompat.widget.AppCompatImageView;
 
 /**
  * Created by Artem Kholodnyi on 11/23/15.
  */
-public class CenterTopImageView extends ImageView {
-    private Matrix matrix = new Matrix();
+public class CenterTopImageView extends AppCompatImageView {
+    private final Matrix matrix = new Matrix();
 
     public CenterTopImageView(Context context) {
         super(context);

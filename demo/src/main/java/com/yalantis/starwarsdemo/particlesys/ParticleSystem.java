@@ -24,7 +24,7 @@ import static android.opengl.GLES20.glGenBuffers;
 public class ParticleSystem implements Renderable {
     private final ParticleSystemRenderer mRenderer;
     public static final int PARTICLE_COUNT = 1_000;
-    private int mBufferId;
+    private final int mBufferId;
 
     public static final int POS_DATA_SIZE = 3;
     public static final int TEXTURE_COORDS_DATA_SIZE = 2;
@@ -39,7 +39,7 @@ public class ParticleSystem implements Renderable {
         Timber.d("generated in %d ms", System.currentTimeMillis() - startTime);
 
         // Copy buffer into OpenGL's memory. After, we don't need to keep the client-side buffers around.
-        final int buffers[] = new int[1];
+        final int[] buffers = new int[1];
         glGenBuffers(1, buffers, 0);
 
         glBindBuffer(GL_ARRAY_BUFFER, buffers[0]);

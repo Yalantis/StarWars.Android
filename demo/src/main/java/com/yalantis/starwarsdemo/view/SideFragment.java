@@ -43,7 +43,7 @@ public abstract class SideFragment extends Fragment implements ProfileAdapterLis
 
     private FragmentSideBinding binding;
 
-    private Toolbar.OnMenuItemClickListener onMenuItemClickListener = item -> {
+    private final Toolbar.OnMenuItemClickListener onMenuItemClickListener = item -> {
         if (R.id.action_close == item.getItemId()) {
             doBreak();
         }
