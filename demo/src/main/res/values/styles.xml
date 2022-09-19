@@ -1,4 +1,5 @@
 <resources>
+
     <style name="StarWarsAppTheme" parent="Theme.AppCompat.NoActionBar">
         <item name="android:windowBackground">@android:color/black</item>
     </style>
@@ -24,23 +25,23 @@
     </style>
 
     <style name="RecyclerView">
-        
+
     </style>
-    
+
     <declare-styleable name="viewStyle">
-        <attr name="viewStyle" format="reference"/>
+        <attr name="viewStyle" format="reference" />
     </declare-styleable>
 
     <declare-styleable name="toolbarBackground">
-        <attr name="toolbarBackground" format="reference"/>
+        <attr name="toolbarBackground" format="reference" />
     </declare-styleable>
 
     <declare-styleable name="toolbarStyle">
-        <attr name="toolbarStyle"/>
+        <attr name="toolbarStyle" />
     </declare-styleable>
 
     <declare-styleable name="labelTextColor">
-        <attr name="labelTextColor" format="reference"/>
+        <attr name="labelTextColor" format="reference" />
     </declare-styleable>
 
     <style name="viewStyleDarkSide">
@@ -52,11 +53,11 @@
     </style>
 
     <!--<style name="ToolbarBackgroundBright">-->
-        <!--<item name="android:background">@color/toolbarBright</item>-->
+    <!--<item name="android:background">@color/toolbarBright</item>-->
     <!--</style>-->
 
     <!--<style name="ToolbarBackgroundDark">-->
-        <!--<item name="android:background">@color/toolbarDark</item>-->
+    <!--<item name="android:background">@color/toolbarDark</item>-->
     <!--</style>-->
 
     <style name="TransparentTextAppearance" parent="TextAppearance.AppCompat.Title">

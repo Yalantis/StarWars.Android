@@ -6,17 +6,19 @@ import android.content.Context;
 import android.graphics.Rect;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.StyleRes;
-import android.support.v4.app.Fragment;
-import android.support.v7.view.ContextThemeWrapper;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.SwitchCompat;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.StyleRes;
+import androidx.appcompat.view.ContextThemeWrapper;
+import androidx.appcompat.widget.SwitchCompat;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.yalantis.starwars.interfaces.TilesFrameLayoutListener;
 import com.yalantis.starwarsdemo.R;
@@ -124,8 +126,8 @@ public abstract class SideFragment extends Fragment implements ProfileAdapterLis
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        binding = FragmentSideBinding.inflate(getLayoutInflater(savedInstanceState).cloneInContext(new ContextThemeWrapper(getContext(), getTheme())), container, false);
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        binding = FragmentSideBinding.inflate(onGetLayoutInflater(savedInstanceState).cloneInContext(new ContextThemeWrapper(getContext(), getTheme())), container, false);
 
         final Bundle args = getArguments();
         if (args != null) {

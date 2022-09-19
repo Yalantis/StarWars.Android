@@ -33,7 +33,7 @@ public class CenterTopImageView extends ImageView {
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         super.onLayout(changed, left, top, right, bottom);
         if (getDrawable() != null) {
-            float k = (right - left) / (float)getDrawable().getIntrinsicWidth();
+            float k = (right - left) / (float) getDrawable().getIntrinsicWidth();
             matrix.setScale(k, k);
             setImageMatrix(matrix);
         }
