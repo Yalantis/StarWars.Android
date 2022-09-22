@@ -2,40 +2,33 @@ package com.yalantis.starwarsdemo.view;
 
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
-import android.app.Activity;
+import android.content.Context;
 import android.graphics.Rect;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.StyleRes;
-import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.v4.app.Fragment;
-import android.support.v7.view.ContextThemeWrapper;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SwitchCompat;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
-import android.widget.ImageView;
 
-import com.yalantis.starwars.TilesFrameLayout;
+import androidx.annotation.NonNull;
+import androidx.annotation.StyleRes;
+import androidx.appcompat.view.ContextThemeWrapper;
+import androidx.appcompat.widget.SwitchCompat;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+
 import com.yalantis.starwars.interfaces.TilesFrameLayoutListener;
 import com.yalantis.starwarsdemo.R;
 import com.yalantis.starwarsdemo.adapter.ProfileAdapter;
+import com.yalantis.starwarsdemo.databinding.FragmentSideBinding;
 import com.yalantis.starwarsdemo.interfaces.DemoActivityInterface;
 import com.yalantis.starwarsdemo.interfaces.ProfileAdapterListener;
 import com.yalantis.starwarsdemo.interfaces.TilesRendererInterface;
 import com.yalantis.starwarsdemo.model.User;
 import com.yalantis.starwarsdemo.widget.ClipRevealFrame;
-
-import butterknife.Bind;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 /**
  * Created by Artem Kholodnyi on 11/19/15.
@@ -47,27 +40,14 @@ public abstract class SideFragment extends Fragment implements ProfileAdapterLis
     public static final String ARG_SHOULD_EXPAND = "should expand";
     private static final long ANIM_DURATION = 250L;
     protected float mRadius;
-    @Bind(R.id.recycler)
-    RecyclerView mRecycler;
-    @Bind(R.id.toolbar)
-    Toolbar mToolbar;
-    @Bind(R.id.header)
-    ImageView mHeader;
-    @Bind(R.id.tessellation_frame_layout)
-    TilesFrameLayout mTilesFrameLayout;
-    @Bind(R.id.collapsing_toolbar_layout)
-    CollapsingToolbarLayout mCollapsingToolbarLayout;
-    @Bind(R.id.app_bar_layout)
-    AppBarLayout mAppBarLayout;
-    private View mRootView;
-    private Toolbar.OnMenuItemClickListener onMenuItemClickListener = new Toolbar.OnMenuItemClickListener() {
-        @Override
-        public boolean onMenuItemClick(final MenuItem item) {
-            if (R.id.action_close == item.getItemId()) {
-                doBreak();
-            }
-            return false;
+
+    private FragmentSideBinding binding;
+
+    private final Toolbar.OnMenuItemClickListener onMenuItemClickListener = item -> {
+        if (R.id.action_close == item.getItemId()) {
+            doBreak();
         }
+        return false;
     };
     private TilesRendererInterface mTilesListener;
     private DemoActivityInterface mDemoActivityInterface;
@@ -81,23 +61,22 @@ public abstract class SideFragment extends Fragment implements ProfileAdapterLis
     @Override
     public void onPause() {
         super.onPause();
-        mTilesFrameLayout.onPause();
+        binding.tessellationFrameLayout.onPause();
     }
 
     @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        if (activity instanceof TilesRendererInterface) {
-            if (activity instanceof TilesRendererInterface) {
-                mTilesListener = (TilesRendererInterface) activity;
-            }
-            if (activity instanceof DemoActivityInterface) {
-                mDemoActivityInterface = (DemoActivityInterface) activity;
-            }
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof TilesRendererInterface) {
+            mTilesListener = (TilesRendererInterface) context;
+        }
+        if (context instanceof DemoActivityInterface) {
+            mDemoActivityInterface = (DemoActivityInterface) context;
         }
     }
 
-    abstract @StyleRes int getTheme();
+    abstract @StyleRes
+    int getTheme();
 
     protected Animator createCheckoutRevealAnimator(final ClipRevealFrame view, int x, int y, float startRadius, float endRadius) {
         setMenuVisibility(false);
@@ -147,12 +126,12 @@ public abstract class SideFragment extends Fragment implements ProfileAdapterLis
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        mRootView = inflater.cloneInContext(new ContextThemeWrapper(getContext(), getTheme()))
-                .inflate(R.layout.fragment_side, container, false);
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        binding = FragmentSideBinding.inflate(onGetLayoutInflater(savedInstanceState).cloneInContext(new ContextThemeWrapper(getContext(), getTheme())), container, false);
+
         final Bundle args = getArguments();
         if (args != null) {
-            mRootView.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
+            binding.getRoot().addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
                 @Override
                 public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop,
                                            int oldRight, int oldBottom) {
@@ -174,25 +153,25 @@ public abstract class SideFragment extends Fragment implements ProfileAdapterLis
             });
         }
 
-        ButterKnife.bind(this, mRootView);
-        return mRootView;
+        return binding.getRoot();
     }
-
-
-
 
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mTilesFrameLayout.setOnAnimationFinishedListener(this);
-        mRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
-        mRecycler.setAdapter(new ProfileAdapter(getContext(), getUser(), this));
-        setUpToolbar(mToolbar);
-        mHeader.setImageResource(getUser().getPhotoRes());
+        binding.tessellationFrameLayout.setOnAnimationFinishedListener(this);
+        binding.recycler.setLayoutManager(new LinearLayoutManager(getContext()));
+        binding.recycler.setAdapter(new ProfileAdapter(getContext(), getUser(), this));
+        setUpToolbar(binding.toolbar);
+        binding.header.setImageResource(getUser().getPhotoRes());
         if (getArguments() != null) {
-            mAppBarLayout.setExpanded(getArguments().getBoolean(ARG_SHOULD_EXPAND), false);
+            binding.appBarLayout.setExpanded(getArguments().getBoolean(ARG_SHOULD_EXPAND), false);
         }
+
+        binding.btnSave.setOnClickListener(v -> {
+            doBreak();
+        });
     }
 
     @Override
@@ -212,13 +191,6 @@ public abstract class SideFragment extends Fragment implements ProfileAdapterLis
     abstract User getUser();
 
 
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        ButterKnife.unbind(this);
-    }
-
     @Override
     public void onSideSwitch(SwitchCompat v) {
         Rect rect = new Rect();
@@ -230,7 +202,7 @@ public abstract class SideFragment extends Fragment implements ProfileAdapterLis
         if (this instanceof BrightSideFragment && v.isChecked()) {
             cx = rect.right - halfThumbWidth;
             postGoToSide(cy, cx, "dark");
-        } else if (!v.isChecked()){
+        } else if (!v.isChecked()) {
             cx = rect.left + halfThumbWidth;
             postGoToSide(cy, cx, "bright");
         }
@@ -248,7 +220,7 @@ public abstract class SideFragment extends Fragment implements ProfileAdapterLis
     }
 
     private boolean isAppBarExpanded() {
-        return mAppBarLayout != null && mAppBarLayout.getBottom() == mAppBarLayout.getHeight();
+        return binding.appBarLayout.getBottom() == binding.appBarLayout.getHeight();
     }
 
     public int getStatusBarHeight() {
@@ -264,9 +236,7 @@ public abstract class SideFragment extends Fragment implements ProfileAdapterLis
         if (mDemoActivityInterface != null) {
             mDemoActivityInterface.removeAllFragmentExcept(getTagString());
         }
-        if (mTilesFrameLayout != null) {
-            mTilesFrameLayout.startAnimation();
-        }
+        binding.tessellationFrameLayout.startAnimation();
     }
 
     @Override
@@ -277,9 +247,4 @@ public abstract class SideFragment extends Fragment implements ProfileAdapterLis
     }
 
     public abstract String getTagString();
-
-    @OnClick(R.id.btn_save)
-    void onClick() {
-        doBreak();
-    }
 }

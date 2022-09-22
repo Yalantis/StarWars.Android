@@ -1,22 +1,22 @@
 package com.yalantis.starwarsdemo.adapter;
 
 import android.content.Context;
-import android.support.annotation.LayoutRes;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewbinding.ViewBinding;
+
 import com.yalantis.starwarsdemo.R;
+import com.yalantis.starwarsdemo.databinding.ItemProfileGenderBinding;
+import com.yalantis.starwarsdemo.databinding.ItemProfileOtherBinding;
+import com.yalantis.starwarsdemo.databinding.ItemProfileSideBinding;
 import com.yalantis.starwarsdemo.interfaces.ProfileAdapterListener;
 import com.yalantis.starwarsdemo.model.User;
 import com.yalantis.starwarsdemo.widget.BackgroundDrawableSwitchCompat;
-
-import butterknife.Bind;
-import butterknife.ButterKnife;
 
 /**
  * Created by Artem Kholodnyi on 11/17/15.
@@ -26,7 +26,7 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ViewHold
     private static final int VIEW_TYPE_TEXT_FIELD = 1;
     private static final int VIEW_GENDER_FIELD = 2;
     private final ProfileAdapterListener mListener;
-    private User mUser;
+    private final User mUser;
 
     private final String mFullNameLabel;
     private final String mHomeWorldLabel;
@@ -61,21 +61,19 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ViewHold
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        @LayoutRes int layoutRes = getLayoutId(viewType);
-
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(layoutRes, parent, false);
-        return new ViewHolder(itemView);
+        ViewBinding binding = inflateWithBinding(parent, viewType);
+        return new ViewHolder(binding);
     }
 
-    @LayoutRes
-    private int getLayoutId(int viewType) {
+    private ViewBinding inflateWithBinding(ViewGroup parent, int viewType) {
+        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         switch (viewType) {
             case VIEW_TYPE_SIDE:
-                return R.layout.item_profile_side;
+                return ItemProfileSideBinding.inflate(inflater, parent, false);
             case VIEW_TYPE_TEXT_FIELD:
-                return R.layout.item_profile_other;
+                return ItemProfileOtherBinding.inflate(inflater, parent, false);
             case VIEW_GENDER_FIELD:
-                return R.layout.item_profile_gender;
+                return ItemProfileGenderBinding.inflate(inflater, parent, false);
             default:
                 throw new IllegalStateException();
         }
@@ -89,12 +87,8 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ViewHold
 //            holder.getBinding().setVariable(BR.callback, mListener);
 //            holder.getBinding().setVariable(BR.user, mUser);
                 holder.mySwitch.setCheckedImmediate(mUser.isDarkSide());
-                holder.mySwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                    @Override
-                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                        mListener.onSideSwitch(holder.mySwitch);
-                    }
-                });
+                holder.mySwitch.setOnCheckedChangeListener((buttonView, isChecked) ->
+                        mListener.onSideSwitch(holder.mySwitch));
                 holder.label.setText(mUser.getSideText());
                 break;
             case 1:
@@ -122,22 +116,25 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ViewHold
         return 5;
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder {
         @Nullable
-        @Bind(R.id.side_switch)
         BackgroundDrawableSwitchCompat mySwitch;
-
         @Nullable
-        @Bind(R.id.tv_label)
         TextView label;
-
         @Nullable
-        @Bind(R.id.tv_value)
         TextView value;
 
-        public ViewHolder(View itemView) {
-            super(itemView);
-            ButterKnife.bind(this, itemView);
+        public ViewHolder(ViewBinding binding) {
+            super(binding.getRoot());
+            if (binding instanceof ItemProfileSideBinding) {
+                mySwitch = ((ItemProfileSideBinding) binding).sideSwitch;
+                label = ((ItemProfileSideBinding) binding).tvLabel;
+            } else if (binding instanceof ItemProfileOtherBinding) {
+                label = ((ItemProfileOtherBinding) binding).tvLabel;
+                value = ((ItemProfileOtherBinding) binding).tvValue;
+            } else if (binding instanceof ItemProfileGenderBinding) {
+                label = ((ItemProfileGenderBinding) binding).tvLabel;
+            }
         }
     }
 }

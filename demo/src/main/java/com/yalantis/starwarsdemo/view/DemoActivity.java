@@ -6,12 +6,14 @@ import android.content.pm.ConfigurationInfo;
 import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.yalantis.starwarsdemo.R;
+import com.yalantis.starwarsdemo.databinding.ActivityDemoBinding;
 import com.yalantis.starwarsdemo.interfaces.DemoActivityInterface;
 import com.yalantis.starwarsdemo.interfaces.GreetingFragmentInterface;
 import com.yalantis.starwarsdemo.interfaces.TilesRendererInterface;
@@ -19,16 +21,14 @@ import com.yalantis.starwarsdemo.particlesys.ParticleSystemRenderer;
 
 import java.util.List;
 
-import butterknife.Bind;
-import butterknife.ButterKnife;
 
 /**
  * Created by Artem Kholodnyi on 11/11/15.
  */
 public class DemoActivity extends AppCompatActivity implements GreetingFragmentInterface,
         DemoActivityInterface, TilesRendererInterface {
-    @Bind(R.id.gl_surface_view)
-    GLSurfaceView mGlSurfaceView;
+
+    private ActivityDemoBinding binding;
 
     private SideFragment mDarkFragment;
     private SideFragment mBrightFragment;
@@ -37,9 +37,8 @@ public class DemoActivity extends AppCompatActivity implements GreetingFragmentI
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        setContentView(R.layout.activity_demo);
-        ButterKnife.bind(this);
+        binding = ActivityDemoBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         // Check if the system supports OpenGL ES 2.0.
         final ActivityManager activityManager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
@@ -48,12 +47,12 @@ public class DemoActivity extends AppCompatActivity implements GreetingFragmentI
 
         if (supportsEs2) {
             // Request an OpenGL ES 2.0 compatible context.
-            mGlSurfaceView.setEGLContextClientVersion(2);
+            binding.glSurfaceView.setEGLContextClientVersion(2);
 
             // Set the renderer to our demo renderer, defined below.
-            ParticleSystemRenderer mRenderer = new ParticleSystemRenderer(mGlSurfaceView);
-            mGlSurfaceView.setRenderer(mRenderer);
-            mGlSurfaceView.setRenderMode(GLSurfaceView.RENDERMODE_CONTINUOUSLY);
+            ParticleSystemRenderer mRenderer = new ParticleSystemRenderer(binding.glSurfaceView);
+            binding.glSurfaceView.setRenderer(mRenderer);
+            binding.glSurfaceView.setRenderMode(GLSurfaceView.RENDERMODE_CONTINUOUSLY);
         } else {
             throw new UnsupportedOperationException();
         }
@@ -67,13 +66,13 @@ public class DemoActivity extends AppCompatActivity implements GreetingFragmentI
     @Override
     protected void onPause() {
         super.onPause();
-        mGlSurfaceView.onPause();
+        binding.glSurfaceView.onPause();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        mGlSurfaceView.onResume();
+        binding.glSurfaceView.onResume();
     }
 
     private void showGreetings() {
@@ -86,15 +85,10 @@ public class DemoActivity extends AppCompatActivity implements GreetingFragmentI
 
     @Override
     public void onSetupProfileClick() {
-        new Handler().post(new Runnable() {
-            @Override
-            public void run() {
-                getSupportFragmentManager().beginTransaction()
-                        .setCustomAnimations(R.anim.slide_upward, 0)
-                        .add(R.id.container, BrightSideFragment.newInstance(), "bright")
-                        .commit();
-            }
-        });
+        new Handler().post(() -> getSupportFragmentManager().beginTransaction()
+                .setCustomAnimations(R.anim.slide_upward, 0)
+                .add(R.id.container, BrightSideFragment.newInstance(), "bright")
+                .commit());
 
     }
 
